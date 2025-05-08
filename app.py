@@ -36,7 +36,7 @@ api_key = st.secrets.get("GROQ_API_KEY") or os.getenv("GROQ_API_KEY")
 if api_key:
     os.environ["GROQ_API_KEY"] = api_key
 else:
-    st.error("❌ Please set your OpenAI API Key in Streamlit secrets or .env")
+    st.error("❌ Please set your Groq API Key in Streamlit secrets or .env")
 
 # --- HEADER ---
 st.markdown("<h1 style='text-align: center;'>📺📰 LangChain Summarizer</h1>", unsafe_allow_html=True)

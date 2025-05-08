@@ -21,7 +21,7 @@ with open("style.css") as f:
 # --- SIDEBAR ---
 with st.sidebar:
     st.markdown("## 🔐 API Configuration")
-    api_key = st.text_input("Enter GROQ API Key", type="password")
+    api_key = st.text_input("Enter Groq API Key", type="password")
     model = st.selectbox("Select Model", ["gemma2-9b-it", "llama-3.3-70b-versatile"])
     temp = st.slider("Temperature", 0.0, 1.0, 0.3)
     chunk_size = st.slider("Chunk Size", 500, 4000, 2000, step=100)

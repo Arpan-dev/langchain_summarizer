@@ -1,6 +1,5 @@
 import os
 import streamlit as st
-from langchain_openai import ChatOpenAI
 from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 from langchain_community.document_loaders import UnstructuredURLLoader

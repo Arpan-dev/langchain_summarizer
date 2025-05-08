@@ -22,7 +22,7 @@ with open("style.css") as f:
 with st.sidebar:
     st.markdown("## 🔐 API Configuration")
     api_key = st.text_input("Enter Groq API Key", type="password")
-    model = st.selectbox("Select Model", ["gemma2-9b-it", "llama-3.3-70b-versatile"])
+    model = st.selectbox("Select Model", ["llama-3.3-70b-versatile","gemma2-9b-it"])
     temp = st.slider("Temperature", 0.0, 1.0, 0.3)
     chunk_size = st.slider("Chunk Size", 500, 4000, 2000, step=100)
     overlap = st.slider("Chunk Overlap", 0, 500, 100, step=10)

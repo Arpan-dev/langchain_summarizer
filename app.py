@@ -30,9 +30,13 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("🛠️ **LangChain Summarizer**\nBuilt with ❤️ by OpenAI")
 
-# Set API key
+# This will fetch from secrets in Streamlit Cloud or fall back to .env locally
+api_key = st.secrets.get("GROQ_API_KEY") or os.getenv("GROQ_API_KEY")
+
 if api_key:
     os.environ["GROQ_API_KEY"] = api_key
+else:
+    st.error("❌ Please set your OpenAI API Key in Streamlit secrets or .env")
 
 # --- HEADER ---
 st.markdown("<h1 style='text-align: center;'>📺📰 LangChain Summarizer</h1>", unsafe_allow_html=True)

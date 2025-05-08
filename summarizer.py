@@ -1,8 +1,6 @@
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.prompts import PromptTemplate
 from langchain.chains.summarize import load_summarize_chain
-from langchain.vectorstores import FAISS
-from langchain_openai import OpenAIEmbeddings
 
 def get_prompt_template():
     return PromptTemplate(

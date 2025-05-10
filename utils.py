@@ -1,8 +1,15 @@
+""" 
+Description: Importing dependencies in the helper
+"""
+
 import re
 import yt_dlp
 from youtube_transcript_api import YouTubeTranscriptApi, _errors
-from langchain_community.document_loaders import YoutubeLoader
 from langchain.schema import Document
+
+""" 
+Description: Function to extract the video id from the video.
+"""
 
 def extract_video_id(url):
     patterns = [
@@ -15,23 +22,33 @@ def extract_video_id(url):
             return match.group(1)
     return None
 
+
+""" 
+Description: Function to extract the video information from the video.
+"""
+
 def get_video_info(youtube_url):
     with yt_dlp.YoutubeDL() as ydl:
         info = ydl.extract_info(youtube_url, download=False)
     return info.get("title", "").replace("\u2060", ""), info.get("uploader", "")
 
-def get_transcript(video_id, youtube_url):
-    transcript_text = ""
+
+""" 
+Description: Function to extract the video transcript of any language like english, hindi, french etc from the video.
+"""
+
+def get_transcript_url(video_id):
     try:
-        transcript_list = YouTubeTranscriptApi.get_transcript(video_id)
-        for item in transcript_list:
-            transcript_text += item['text'] + " "
-        return [Document(page_content=transcript_text)]
+        transcripts = YouTubeTranscriptApi.list_transcripts(video_id)
+        for t in transcripts:
+            try:
+                original = t.fetch()
+                snippets = getattr(original, "snippets", original) 
+                text = " ".join([s.text if hasattr(s, "text") else s["text"] for s in snippets])
+                return [Document(page_content=text)]
+            except:
+                continue
+        return None
     except (_errors.TranscriptsDisabled, _errors.NoTranscriptFound):
         pass
-    try:
-        loader = YoutubeLoader.from_youtube_url(youtube_url, add_video_info=True, language=["en"])
-        return loader.load()
-    except:
-        pass
-    return None
+        

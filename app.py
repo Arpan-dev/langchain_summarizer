@@ -31,6 +31,9 @@ with st.sidebar:
     overlap = st.slider("Chunk Overlap", 0, 500, 100, step=10)  
     st.markdown("---")
     st.markdown("🛠️ **LangChain Summarizer**\nBuilt with ❤️ by OpenAI/GroqAPI")
+    
+# This will fetch from secrets in Streamlit Cloud
+api_key = st.secrets.get("GROQ_API_KEY")
 
 # --- HEADER ---
 st.markdown("<h1 style='text-align: center;'>📺📰 LangChain Summarizer</h1>", unsafe_allow_html=True)

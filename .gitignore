@@ -1,5 +1,7 @@
 # Directories
+venv/
 .venv/
+__pycache__/
 
 # Files
 .env

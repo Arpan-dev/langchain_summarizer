@@ -27,10 +27,10 @@ with st.sidebar:
     if api_key_input:
         if api_key_input.startswith("gsk_"):
             provider = "groq"
-            model_options = ["Llama3-70B-8192", "deepseek-r1-distill-llama-70b", "gemma2-9b-it", "llama-3.3-70b-versatile"]
+            model_options = ["llama-3.3-70b-versatile","deepseek-r1-distill-llama-70b","Llama3-70B-8192", "gemma2-9b-it"]
         elif api_key_input.startswith("sk-"):
             provider = "openai"
-            model_options = ["gpt-4o-mini","gpt-3.5-turbo", "gpt-4.1", "gpt-4o"]
+            model_options = ["gpt-4.1","gpt-4o-mini","gpt-3.5-turbo","gpt-4o"]
         else:
             st.warning("Unknown API key format. Use a valid Groq, OpenAI, or HuggingFace key.")
 

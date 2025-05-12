@@ -5,6 +5,7 @@ Description: Importing dependencies in the helper
 import re
 import yt_dlp
 from youtube_transcript_api import YouTubeTranscriptApi, _errors
+from youtube_transcript_api.proxies import GenericProxyConfig
 from langchain.schema import Document
 
 """ 
@@ -39,7 +40,8 @@ Description: Function to extract the video transcript of any language like engli
 
 def get_transcript_url(video_id):
     try:
-        transcripts = YouTubeTranscriptApi.list_transcripts(video_id)
+        transcripts = YouTubeTranscriptApi(proxy_config=GenericProxyConfig(
+        https_url="https://www.croxyproxy.com/")).list_transcripts(video_id)
         for t in transcripts:
             try:
                 original = t.fetch()
